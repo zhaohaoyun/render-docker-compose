@@ -1,0 +1,14 @@
+name: render_ssserver
+services:
+    shadowsocks:
+        tty: true
+        restart: always
+        container_name: ssserver
+        ports:
+            - 16390:6500/udp
+            - 16391:6501/udp
+        image: sola97/shadowsocks
+        command: '-s "ss-server" -S "-s 0.0.0.0 -p 6443 -m rc4-md5 -k #Zyzy# -u
+            --fast-open" -k "kcpserver" -K "-l 0.0.0.0:6500 -t 127.0.0.1:6443
+            --mode fast2 --mtu 1300" -u "-s -l 0.0.0.0:6501 -r 127.0.0.1:6443 -f
+            1:3,2:4,8:6,20:10 -k #Zyzy#"'
